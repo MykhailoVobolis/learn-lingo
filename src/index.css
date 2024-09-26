@@ -1,12 +1,50 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/roboto/roboto-regular-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/roboto/roboto-medium-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/roboto/roboto-bold-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/roboto/roboto-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+}
+
 :root {
-  font-family: Roboto, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --main-white-color: #ffffff;
+  --main-black-color: #121417;
+  --main-semiblack-color: #8a8a89;
+  --main-button-color: #f0aa8d;
+  --main-button-hover-color: #f4c8ba;
+  --main-black-button-hover-color: #373c42;
+  --main-grey-color: #f8f8f8;
+  --main-dark-grey-color: rgba(18, 20, 23, 0.7);
+
+  font-family: Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-size: 16px;
 
-  color-scheme: light dark;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: #f0f4f9;
+  background-color: var(--main-white-color);
+  color: var(--main-black-color);
+
+  --animation: 200ms cubic-bezier(0.4, 0, 0.2, 1);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,8 +56,7 @@ body {
   margin: 0, auto;
   min-width: 320px;
   min-height: 100vh;
-  font-family: Roboto, sans-serif;
-  line-height: 1.5;
+  align-content: center;
 }
 
 h1,
@@ -41,6 +78,7 @@ ol {
 
 button {
   cursor: pointer;
+  padding: 0;
 }
 
 img {

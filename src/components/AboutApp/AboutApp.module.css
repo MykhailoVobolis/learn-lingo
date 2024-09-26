@@ -1,0 +1,44 @@
+.aboutContainer {
+  padding: 98px 108px 98px 64px;
+  border-radius: 30px;
+  background-color: var(--main-grey-color);
+  overflow: hidden;
+  position: relative;
+}
+
+.mainTitle {
+  max-width: 548px;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1.17;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+
+.accentWord {
+  font-style: italic;
+  font-weight: 400;
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+}
+
+.accentWord::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  right: 0;
+  bottom: 6px;
+  height: 70%;
+  width: 105%;
+  background-color: var(--main-button-hover-color);
+  z-index: -1;
+  border-radius: 8px;
+}
+
+.textAbout {
+  max-width: 471px;
+  line-height: 1.38;
+  letter-spacing: -0.02em;
+  margin-bottom: 64px;
+}

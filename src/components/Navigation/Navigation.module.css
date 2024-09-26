@@ -1,0 +1,41 @@
+.navMenu {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.navigation {
+  width: 661px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  line-height: 1.25;
+  text-decoration: none;
+  color: var(--main-black-color);
+  transition: color var(--animation);
+}
+
+.link:hover {
+  color: var(--main-button-color);
+}
+
+.active {
+  color: var(--main-button-color);
+  position: relative;
+}
+
+.mainLogo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--main-black-color);
+}

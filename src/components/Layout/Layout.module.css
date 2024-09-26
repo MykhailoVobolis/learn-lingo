@@ -1,0 +1,12 @@
+.pageContainer {
+  min-width: 320px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
+  padding: 0px 64px;
+}
+
+.mainContainer {
+  flex-grow: 1;
+}
