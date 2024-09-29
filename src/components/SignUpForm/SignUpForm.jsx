@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import InputField from "../InputField/InputField.jsx";
 import FormButton from "../FormButton/FormButton.jsx";
 
+import { registerUser } from "../../services/authService.js";
+
 import css from "./SignUpForm.module.css";
 
 export default function SignUpForm() {
@@ -18,8 +20,9 @@ export default function SignUpForm() {
     mode: "all",
   });
 
-  const onSubmit = (data) => {
-    console.log("Form submitted:", data); //  Прибрати перед продакшеном !!!
+  const onSubmit = (userData) => {
+    registerUser(userData);
+    methods.reset();
     dispatch(closeModal());
   };
 

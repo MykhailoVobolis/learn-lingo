@@ -1,12 +1,16 @@
 import * as yup from "yup";
 
+const regex = {
+  emailRegexp: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+};
+
 export const signUpSchema = yup.object().shape({
-  name: yup.string().required("Ім'я є обов'язковим"),
-  email: yup.string().email("Невірний email").required("Email є обов'язковим"),
-  password: yup.string().min(8, "Пароль повинен містити щонайменше 8 символів").required("Пароль є обов'язковим"),
+  name: yup.string().required("Name is required").min(3, "Name must be at least 3 characters"),
+  email: yup.string().required("Email is required").matches(regex.emailRegexp, "Invalid email"),
+  password: yup.string().required("Password is required").min(8, "Password must be at least 8 characters"),
 });
 
 export const singInSchema = yup.object().shape({
-  email: yup.string().email("Invalid email").required("Email is required"),
-  password: yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
+  email: yup.string().required("Email is required").matches(regex.emailRegexp, "Invalid email"),
+  password: yup.string().required("Password is required").min(8, "Password must be at least 8 characters"),
 });
