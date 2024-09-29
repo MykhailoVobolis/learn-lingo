@@ -30,8 +30,6 @@ const modalStyles = {
     maxHeight: "90vh",
     overflowY: "auto",
     scrollbarWidth: "none",
-    width: "565px",
-    height: "599px",
   },
 };
 

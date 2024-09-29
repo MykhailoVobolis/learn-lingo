@@ -1,0 +1,8 @@
+.imputContainer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 40px;
+}

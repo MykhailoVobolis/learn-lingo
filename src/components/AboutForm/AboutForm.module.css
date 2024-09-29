@@ -1,0 +1,13 @@
+.title {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.description {
+  line-height: 1.38;
+  color: var(--main-dark-grey-color);
+  margin-bottom: 20px;
+}
