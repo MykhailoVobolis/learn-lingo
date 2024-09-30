@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logIn, register } from "./operations.js";
+import { logIn, logOut, register } from "./operations.js";
 
 const handlePending = (state) => {
   state.loading = true;
 };
 
-const handleRejected = (state) => {
+const handleRejected = (state, action) => {
   state.loading = false;
+  state.error = action.payload;
 };
 
 const authSlice = createSlice({
@@ -19,6 +20,7 @@ const authSlice = createSlice({
     },
     loading: false,
     isLoggedIn: false,
+    error: null,
   },
   reducers: {
     setUser(state, action) {
@@ -54,7 +56,21 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.isLoggedIn = true;
       })
-      .addCase(logIn.rejected, handleRejected);
+      .addCase(logIn.rejected, handleRejected)
+
+      // Обробка операції виходу користувача
+      .addCase(logOut.pending, handlePending)
+      .addCase(logOut.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+        state.user = {
+          uid: null,
+          email: null,
+          name: null,
+        };
+        state.isLoggedIn = false;
+      })
+      .addCase(logOut.rejected, handleRejected);
   },
 });
 

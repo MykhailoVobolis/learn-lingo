@@ -3,7 +3,7 @@
   background-color: var(--main-white-color);
   position: sticky;
   top: 0px;
-  z-index: 9999;
+  z-index: 999;
 }
 
 .navContainer {

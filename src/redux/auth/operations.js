@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { auth } from "../../services/firebase.js";
 import { isEmailUnique, saveUserData } from "../../services/firebaseService.js";
 
@@ -69,6 +69,15 @@ export const logIn = createAsyncThunk("auth/login", async (userInfo, thunkAPI) =
     return userData;
   } catch (error) {
     console.error("Помилка реєстрації:", error);
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+// Logout користувача
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    await signOut(auth);
+  } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });

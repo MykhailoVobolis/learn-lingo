@@ -14,7 +14,6 @@ export default function AppBar() {
     <header className={css.header}>
       <div className={css.navContainer}>
         <Navigation />
-        {/* <AuthNav /> */}
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </div>
     </header>
