@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import InputField from "../InputField/InputField.jsx";
 import FormButton from "../FormButton/FormButton.jsx";
 
-import { loginUser } from "../../services/authService.js";
+import { logIn } from "../../redux/auth/operations.js";
 
 import css from "./SignInForm.module.css";
 
@@ -21,7 +21,7 @@ export default function SignInForm() {
   });
 
   const onSubmit = (userData) => {
-    loginUser(userData);
+    dispatch(logIn(userData));
     methods.reset();
     dispatch(closeModal());
   };
