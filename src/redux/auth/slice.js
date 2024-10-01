@@ -3,11 +3,14 @@ import { logIn, logOut, register } from "./operations.js";
 
 const handlePending = (state) => {
   state.loading = true;
+  state.error = null;
+  state.isAuthenticating = true;
 };
 
 const handleRejected = (state, action) => {
   state.loading = false;
   state.error = action.payload;
+  state.isAuthenticating = false;
 };
 
 const authSlice = createSlice({
@@ -21,6 +24,7 @@ const authSlice = createSlice({
     loading: false,
     isLoggedIn: false,
     error: null,
+    isAuthenticating: false,
   },
   reducers: {
     setUser(state, action) {
@@ -45,6 +49,7 @@ const authSlice = createSlice({
         state.error = null;
         state.user = action.payload.user;
         state.isLoggedIn = true;
+        state.isAuthenticating = false;
       })
       .addCase(register.rejected, handleRejected)
 

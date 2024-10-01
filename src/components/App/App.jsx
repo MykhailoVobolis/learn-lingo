@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearUser, setUser } from "../../redux/auth/slice.js";
+import { selectIsAuthenticating } from "../../redux/auth/selectors.js";
 
 import Layout from "../Layout/Layout.jsx";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Spinner from "../Spinner/Spinner.jsx";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../services/firebase.js";
@@ -18,29 +20,33 @@ const NotFoundPage = lazy(() => import("../../pages/NotFoundPage/NotFoundPage.js
 
 export default function App() {
   const dispatch = useDispatch();
+  const isAuthenticating = useSelector(selectIsAuthenticating);
 
   const [authInitialized, setAuthInitialized] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const userData = {
-          uid: user.uid,
-          email: user.email,
-          name: user.displayName || null,
-        };
-        dispatch(setUser(userData));
-      } else {
-        dispatch(clearUser());
+      // Запобігаємо оновленню стану користувача через onAuthStateChanged, поки йде процес реєстрації або логіну.
+      if (!isAuthenticating) {
+        if (user) {
+          const userData = {
+            uid: user.uid,
+            email: user.email,
+            name: user.displayName,
+          };
+          dispatch(setUser(userData));
+        } else {
+          dispatch(clearUser());
+        }
+        setAuthInitialized(true);
       }
-      setAuthInitialized(true);
     });
 
     return () => unsubscribe();
-  }, [dispatch]);
+  }, [dispatch, isAuthenticating]);
 
   return !authInitialized ? (
-    <b>Refreshing user please wait...</b> // Додати Loader !!!
+    <Spinner isLoading={!authInitialized} />
   ) : (
     <Layout>
       <Routes>
