@@ -5,9 +5,10 @@
 }
 
 .navigation {
-  width: 661px;
+  /* width: 755px; */
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  gap: 390px;
   align-items: center;
 }
 
