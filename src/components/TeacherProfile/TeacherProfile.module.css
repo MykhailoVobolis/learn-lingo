@@ -1,0 +1,28 @@
+.teacherName {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+
+.teachingInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.teachingInfo li {
+  font-weight: 500;
+  color: var(--main-semiblack-color);
+}
+
+.teachingInfoText,
+.moreLink {
+  color: var(--main-black-color);
+  font-weight: 500;
+}
+
+.accent {
+  text-decoration: underline;
+}

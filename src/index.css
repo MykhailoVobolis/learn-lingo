@@ -36,7 +36,9 @@
   --main-black-button-hover-color: #373c42;
   --main-grey-color: #f8f8f8;
   --main-dark-grey-color: rgba(18, 20, 23, 0.7);
-  --main-light-grey-color: rgba(18, 20, 23, 0.1);
+  --main-light-grey-color: rgba(18, 20, 23, 0.2);
+  --main-marker-color: #38cd3e;
+  --main-star-color: #ffc531;
 
   font-family: Roboto, sans-serif;
   line-height: 1.5;

@@ -1,0 +1,26 @@
+.teacherAvatarWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  border: solid 3px var(--main-button-hover-color);
+  position: relative;
+}
+
+.teacherAvatarImg {
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.marker {
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background-color: var(--main-marker-color);
+  border: solid 2px var(--main-white-color);
+  position: absolute;
+  top: 17px;
+  right: 17px;
+}

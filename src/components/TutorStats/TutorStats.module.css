@@ -1,0 +1,49 @@
+.tutorStatsContainer {
+  display: flex;
+  align-items: center;
+  gap: 192px;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-weight: 500;
+  color: var(--main-semiblack-color);
+}
+
+.tutorStatsList {
+  display: flex;
+  gap: 32px;
+}
+
+.tutorStatsList li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.bookIcon {
+  fill: var(--main-black-color);
+}
+
+.starIcon {
+  fill: var(--main-star-color);
+}
+
+.accent {
+  color: var(--main-marker-color);
+}
+
+.afterElement {
+  position: relative;
+}
+
+.afterElement::after {
+  content: "";
+  position: absolute;
+  right: -16px;
+  bottom: 1;
+  width: 1px;
+  height: 16px;
+  background-color: var(--main-light-grey-color);
+}

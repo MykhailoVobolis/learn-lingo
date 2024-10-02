@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { lazy, useEffect, useState } from "react";
+import { lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUser, setUser } from "../../redux/auth/slice.js";
-import { selectIsAuthenticating } from "../../redux/auth/selectors.js";
+import { clearUser, setAuthInitialized, setUser } from "../../redux/auth/slice.js";
+import { selectAuthInitialized, selectIsAuthenticating } from "../../redux/auth/selectors.js";
 
 import Layout from "../Layout/Layout.jsx";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -11,18 +11,15 @@ import Spinner from "../Spinner/Spinner.jsx";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../services/firebase.js";
 
-import css from "./App.module.css";
-
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
-const TeachersPage = lazy(() => import("../../pages/TeachersPage/Teachers.jsx"));
+const TeachersPage = lazy(() => import("../../pages/TeachersPage/TeachersPage.jsx"));
 const FavoritesPage = lazy(() => import("../../pages/FavoritesPage/FavoritesPage.jsx"));
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage/NotFoundPage.jsx"));
 
 export default function App() {
   const dispatch = useDispatch();
   const isAuthenticating = useSelector(selectIsAuthenticating);
-
-  const [authInitialized, setAuthInitialized] = useState(false);
+  const authInitialized = useSelector(selectAuthInitialized);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -38,7 +35,7 @@ export default function App() {
         } else {
           dispatch(clearUser());
         }
-        setAuthInitialized(true);
+        dispatch(setAuthInitialized(true));
       }
     });
 
