@@ -1,4 +1,4 @@
-import { get, push, ref, set } from "firebase/database";
+import { get, limitToFirst, orderByKey, push, query, ref, set, startAfter } from "firebase/database";
 import { database } from "./firebase.js";
 
 // Функция для перевірки унікальності email нового користувача
@@ -40,23 +40,56 @@ export async function writeTeachersDatabase(teachers) {
 }
 
 // Функція для отримання викладачів
-export async function fetchTeachers() {
+// export async function fetchTeachers() {
+//   const teachersRef = ref(database, "teachers");
+//   const snapshot = await get(teachersRef);
+
+//   // Перевіряємо, чи існують дані у базі даних.
+//   if (snapshot.exists()) {
+//     const teachersArray = [];
+
+//     snapshot.forEach((childSnapshot) => {
+//       const teacherId = childSnapshot.key; // Отримуємо унікальний ключ (teacherId)
+//       const teacherData = childSnapshot.val(); // Отримуємо дані про вчителя
+
+//       teachersArray.push({ ...teacherData, id: teacherId }); // Додаємо teacherId до об'єкта
+//     });
+
+//     return teachersArray; // Повертаємо масив із об'єктами вчителів, включаючи їх IDs
+//   }
+
+//   return [];
+// }
+
+// Функція для отримання викладачів з пагінацією
+export async function fetchTeachers(pageSize, startKey = null) {
   const teachersRef = ref(database, "teachers");
-  const snapshot = await get(teachersRef);
+  let teachersQuery;
+
+  // Створюємо запит з пагінацією
+  if (startKey) {
+    teachersQuery = query(teachersRef, orderByKey(), startAfter(startKey), limitToFirst(pageSize));
+  } else {
+    teachersQuery = query(teachersRef, limitToFirst(pageSize));
+  }
+
+  const snapshot = await get(teachersQuery);
 
   // Перевіряємо, чи існують дані у базі даних.
   if (snapshot.exists()) {
     const teachersArray = [];
+    let lastKey = null; // Змінна для збереження останнього ключа
 
     snapshot.forEach((childSnapshot) => {
       const teacherId = childSnapshot.key; // Отримуємо унікальний ключ (teacherId)
       const teacherData = childSnapshot.val(); // Отримуємо дані про вчителя
 
       teachersArray.push({ ...teacherData, id: teacherId }); // Додаємо teacherId до об'єкта
+      lastKey = teacherId; // Оновлюємо lastKey
     });
 
-    return teachersArray; // Повертаємо масив із об'єктами вчителів, включаючи їх IDs
+    return { teachersArray, lastKey }; // Повертаємо масив викладачів та останній ключ
   }
 
-  return [];
+  return { teachersArray: [], lastKey: null }; // Повертаємо порожній масив, якщо дані не знайдено
 }

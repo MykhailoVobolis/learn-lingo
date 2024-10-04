@@ -20,6 +20,7 @@ const teachersSlice = createSlice({
     isFavorite: false,
     loading: false,
     error: null,
+    lastKey: null,
   },
   reducers: {
     onShowDetails: (state, action) => {
@@ -32,9 +33,16 @@ const teachersSlice = createSlice({
     builder
       .addCase(fetchAllTeachers.pending, handlePending)
       .addCase(fetchAllTeachers.fulfilled, (state, action) => {
-        state.loading = false;
         state.error = null;
-        state.teachers = action.payload;
+        state.loading = false;
+
+        // Фільтруємо нових викладачів, щоб уникнути дублювання за ID
+        const newTeachers = action.payload.teachersArray.filter(
+          (newTeacher) => !state.teachers.some((existingTeacher) => existingTeacher.id === newTeacher.id)
+        );
+
+        state.teachers = [...state.teachers, ...newTeachers];
+        state.lastKey = action.payload.newLastKey;
       })
       .addCase(fetchAllTeachers.rejected, handleRejected);
   },

@@ -20,3 +20,7 @@
 .mainBtn.booking {
   margin-top: 32px;
 }
+
+.mainBtn.more {
+  margin: 64px auto 0px auto;
+}

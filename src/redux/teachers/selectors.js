@@ -7,3 +7,7 @@ export const selectShowDetails = (teacherId) =>
     (state) => state.teachers.showDetails,
     (showDetails) => showDetails[teacherId] || false
   );
+
+export const selectLastKey = (state) => state.teachers.lastKey;
+
+export const selectLoading = (state) => state.teachers.loading;
