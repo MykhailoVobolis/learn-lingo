@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectTeachers } from "../../redux/teachers/selectors.js";
 import { useEffect } from "react";
 import { fetchAllTeachers } from "../../redux/teachers/operations.js";
+import TeacherCard from "../TeacherCard/TeacherCard.jsx";
 
 import css from "./TeacherCardCollection.module.css";
-import TeacherCard from "../TeacherCard/TeacherCard.jsx";
 
 export default function TeacherCardCollection() {
   const dispatch = useDispatch();
@@ -15,14 +15,16 @@ export default function TeacherCardCollection() {
   }, [dispatch]);
 
   return (
-    <div className={css.teacherCardCollectionWrapper}>
-      <ul className={css.teacherList}>
-        {teachers.map((teacher, index) => (
-          <li key={index}>
-            <TeacherCard teacher={teacher} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    teachers.length > 0 && (
+      <div className={css.teacherCardCollectionWrapper}>
+        <ul className={css.teacherList}>
+          {teachers.map((teacher) => (
+            <li key={teacher.id}>
+              <TeacherCard teacher={teacher} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
   );
 }

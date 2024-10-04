@@ -13,6 +13,7 @@ import { auth } from "../../services/firebase.js";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const TeachersPage = lazy(() => import("../../pages/TeachersPage/TeachersPage.jsx"));
+const TutorOverview = lazy(() => import("../TutorOverview/TutorOverview.jsx"));
 const FavoritesPage = lazy(() => import("../../pages/FavoritesPage/FavoritesPage.jsx"));
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage/NotFoundPage.jsx"));
 

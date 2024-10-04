@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
+  min-width: 120px;
   height: 120px;
   border-radius: 100%;
   border: solid 3px var(--main-button-hover-color);

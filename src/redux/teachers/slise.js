@@ -4,23 +4,28 @@ import { fetchAllTeachers } from "./operations.js";
 const handlePending = (state) => {
   state.loading = true;
   state.error = null;
-  // state.isAuthenticating = true;
 };
 
 const handleRejected = (state, action) => {
   state.loading = false;
   state.error = action.payload;
-  // state.isAuthenticating = false;
 };
 
-const teachersSlise = createSlice({
+const teachersSlice = createSlice({
   name: "teachers",
   initialState: {
     teachers: [],
+    showDetails: {},
     // currentTeacher: null,
     isFavorite: false,
     loading: false,
     error: null,
+  },
+  reducers: {
+    onShowDetails: (state, action) => {
+      const teacherId = action.payload;
+      state.showDetails[teacherId] = true;
+    },
   },
 
   extraReducers: (builder) => {
@@ -35,4 +40,5 @@ const teachersSlise = createSlice({
   },
 });
 
-export const teachersReducer = teachersSlise.reducer;
+export const { onShowDetails } = teachersSlice.actions;
+export const teachersReducer = teachersSlice.reducer;

@@ -1,0 +1,16 @@
+.heartBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+}
+
+.heartIcon {
+  stroke: var(--main-black-color);
+}
+
+.heartIconIsFavorite {
+  fill: var(--main-button-color);
+  stroke: var(--main-button-color);
+}

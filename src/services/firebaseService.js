@@ -29,7 +29,7 @@ export async function saveUserData(userId, userData) {
   await set(userRef, userData);
 }
 
-// Функція для збереження бази даних teachers
+// Функція для збереження бази даних teachers !!! В ПРОДАКШЕНІ ВИДАЛИТИ !!!
 export async function writeTeachersDatabase(teachers) {
   const teachersRef = ref(database, "teachers");
 
@@ -39,11 +39,24 @@ export async function writeTeachersDatabase(teachers) {
   });
 }
 
+// Функція для отримання викладачів
 export async function fetchTeachers() {
   const teachersRef = ref(database, "teachers");
   const snapshot = await get(teachersRef);
 
-  const teachersObject = snapshot.val();
-  const teachersArray = Object.values(teachersObject);
-  return teachersArray;
+  // Перевіряємо, чи існують дані у базі даних.
+  if (snapshot.exists()) {
+    const teachersArray = [];
+
+    snapshot.forEach((childSnapshot) => {
+      const teacherId = childSnapshot.key; // Отримуємо унікальний ключ (teacherId)
+      const teacherData = childSnapshot.val(); // Отримуємо дані про вчителя
+
+      teachersArray.push({ ...teacherData, id: teacherId }); // Додаємо teacherId до об'єкта
+    });
+
+    return teachersArray; // Повертаємо масив із об'єктами вчителів, включаючи їх IDs
+  }
+
+  return [];
 }

@@ -1,0 +1,44 @@
+.reviewCard {
+  margin-bottom: 32px;
+}
+
+.avatar {
+  border-radius: 100px;
+  background-color: var(--main-grey-color);
+  object-fit: cover;
+}
+
+.name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main-semiblack-color);
+  margin-bottom: 2px;
+}
+
+.aboutAutorReview {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.starIcon {
+  fill: var(--main-star-color);
+}
+
+.rating {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+}
+
+.textReview {
+  font-weight: 500;
+}

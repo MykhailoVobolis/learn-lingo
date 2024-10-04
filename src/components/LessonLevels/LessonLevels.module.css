@@ -1,0 +1,20 @@
+.levelsContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.levelItem {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  padding: 7px 11px;
+  border: solid 1px var(--main-light-grey-color);
+  border-radius: 100px;
+  background-color: transparent;
+}
+
+.levelItem:first-child {
+  background-color: var(--main-button-color);
+  border-color: var(--main-button-color);
+}
