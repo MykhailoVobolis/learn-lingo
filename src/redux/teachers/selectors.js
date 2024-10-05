@@ -11,3 +11,5 @@ export const selectShowDetails = (teacherId) =>
 export const selectLastKey = (state) => state.teachers.lastKey;
 
 export const selectLoading = (state) => state.teachers.loading;
+
+export const selectLoadMore = (state) => state.teachers.loadMore;

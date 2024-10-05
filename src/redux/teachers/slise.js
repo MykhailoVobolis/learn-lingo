@@ -4,11 +4,19 @@ import { fetchAllTeachers } from "./operations.js";
 const handlePending = (state) => {
   state.loading = true;
   state.error = null;
+  state.loadMore = false;
 };
 
 const handleRejected = (state, action) => {
   state.loading = false;
   state.error = action.payload;
+};
+
+// Функція фільтрації нових викладачів, щоб уникнути дублювання за ID
+const filterNewTeachers = (existingTeachers, newTeachersArray) => {
+  return newTeachersArray.filter(
+    (newTeacher) => !existingTeachers.some((existingTeacher) => existingTeacher.id === newTeacher.id)
+  );
 };
 
 const teachersSlice = createSlice({
@@ -21,6 +29,7 @@ const teachersSlice = createSlice({
     loading: false,
     error: null,
     lastKey: null,
+    loadMore: false,
   },
   reducers: {
     onShowDetails: (state, action) => {
@@ -35,14 +44,10 @@ const teachersSlice = createSlice({
       .addCase(fetchAllTeachers.fulfilled, (state, action) => {
         state.error = null;
         state.loading = false;
-
-        // Фільтруємо нових викладачів, щоб уникнути дублювання за ID
-        const newTeachers = action.payload.teachersArray.filter(
-          (newTeacher) => !state.teachers.some((existingTeacher) => existingTeacher.id === newTeacher.id)
-        );
-
+        const newTeachers = filterNewTeachers(state.teachers, action.payload.teachersArray);
         state.teachers = [...state.teachers, ...newTeachers];
-        state.lastKey = action.payload.newLastKey;
+        state.lastKey = action.payload.lastKey;
+        state.loadMore = action.payload.loadMore;
       })
       .addCase(fetchAllTeachers.rejected, handleRejected);
   },

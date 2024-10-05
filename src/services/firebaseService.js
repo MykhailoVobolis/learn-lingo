@@ -66,11 +66,11 @@ export async function fetchTeachers(pageSize, startKey = null) {
   const teachersRef = ref(database, "teachers");
   let teachersQuery;
 
-  // Створюємо запит з пагінацією
+  // Створюємо запит з пагінацією до даючі +1 об'єкт у запиті для подальшої перевірки чи є у БД ще об'єкти
   if (startKey) {
-    teachersQuery = query(teachersRef, orderByKey(), startAfter(startKey), limitToFirst(pageSize));
+    teachersQuery = query(teachersRef, orderByKey(), startAfter(startKey), limitToFirst(pageSize + 1));
   } else {
-    teachersQuery = query(teachersRef, limitToFirst(pageSize));
+    teachersQuery = query(teachersRef, limitToFirst(pageSize + 1));
   }
 
   const snapshot = await get(teachersQuery);
@@ -80,16 +80,25 @@ export async function fetchTeachers(pageSize, startKey = null) {
     const teachersArray = [];
     let lastKey = null; // Змінна для збереження останнього ключа
 
+    // Перевиряємо чи існують ще об'екти у базі для завантаження
+    const teachersNumber = Object.keys(snapshot.val()).length;
+    const loadMore = teachersNumber > pageSize ? true : false;
+
+    // Змінна-акумулятор для рендеру тільки pageSize кількості об'єктів з БД
+    let i = 0;
     snapshot.forEach((childSnapshot) => {
+      i++;
       const teacherId = childSnapshot.key; // Отримуємо унікальний ключ (teacherId)
       const teacherData = childSnapshot.val(); // Отримуємо дані про вчителя
 
-      teachersArray.push({ ...teacherData, id: teacherId }); // Додаємо teacherId до об'єкта
-      lastKey = teacherId; // Оновлюємо lastKey
+      if (i <= pageSize) {
+        teachersArray.push({ ...teacherData, id: teacherId }); // Додаємо teacherId до об'єкта
+        lastKey = teacherId; // Оновлюємо lastKey
+      }
     });
 
-    return { teachersArray, lastKey }; // Повертаємо масив викладачів та останній ключ
+    return { teachersArray, lastKey, loadMore };
   }
 
-  return { teachersArray: [], lastKey: null }; // Повертаємо порожній масив, якщо дані не знайдено
+  return { teachersArray: [], lastKey: null, loadMore: false };
 }
