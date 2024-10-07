@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser, setAuthInitialized, setUser } from "../../redux/auth/slice.js";
-import { selectAuthInitialized, selectIsAuthenticating } from "../../redux/auth/selectors.js";
+import { selectAuthInitialized, selectIsAuthenticating, selectIsLoggedIn } from "../../redux/auth/selectors.js";
 
 import Layout from "../Layout/Layout.jsx";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -10,10 +10,10 @@ import Spinner from "../Spinner/Spinner.jsx";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../services/firebase.js";
+import { fetchAllFavoritesId } from "../../redux/favorites/operations.js";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const TeachersPage = lazy(() => import("../../pages/TeachersPage/TeachersPage.jsx"));
-const TutorOverview = lazy(() => import("../TutorOverview/TutorOverview.jsx"));
 const FavoritesPage = lazy(() => import("../../pages/FavoritesPage/FavoritesPage.jsx"));
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage/NotFoundPage.jsx"));
 
@@ -21,8 +21,12 @@ export default function App() {
   const dispatch = useDispatch();
   const isAuthenticating = useSelector(selectIsAuthenticating);
   const authInitialized = useSelector(selectAuthInitialized);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(fetchAllFavoritesId());
+    }
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       // Запобігаємо оновленню стану користувача через onAuthStateChanged, поки йде процес реєстрації або логіну.
       if (!isAuthenticating) {
@@ -41,7 +45,7 @@ export default function App() {
     });
 
     return () => unsubscribe();
-  }, [dispatch, isAuthenticating]);
+  }, [dispatch, isAuthenticating, isLoggedIn]);
 
   return !authInitialized ? (
     <Spinner isLoading={!authInitialized} />

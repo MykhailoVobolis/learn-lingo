@@ -3,11 +3,11 @@ import TeacherProfile from "../TeacherProfile/TeacherProfile.jsx";
 
 import css from "./TeacherCard.module.css";
 
-export default function TeacherCard({ teacher }) {
+export default function TeacherCard({ teacher, onToggleFavorite }) {
   return (
     <div className={css.teacherCardContainer}>
       <TeacherAvatar imgUrl={teacher.avatar_url} />
-      <TeacherProfile teacher={teacher} />
+      <TeacherProfile teacher={teacher} onToggleFavorite={onToggleFavorite} />
     </div>
   );
 }

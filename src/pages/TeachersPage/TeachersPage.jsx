@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import MainButton from "../../components/MainButton/MainButton.jsx";
-import TeacherCardCollection from "../../components/TeacherCardCollection/TeacherCardCollection.jsx";
-import Spinner from "../../components/Spinner/Spinner.jsx";
-import { selectLastKey, selectLoading, selectLoadMore, selectTeachers } from "../../redux/teachers/selectors.js";
 import { useEffect, useRef } from "react";
+
+import { selectLastKey, selectLoading, selectLoadMore, selectTeachers } from "../../redux/teachers/selectors.js";
 import { fetchAllTeachers } from "../../redux/teachers/operations.js";
+import { clearAllShowDetails } from "../../redux/teachers/slise.js";
+
+import Spinner from "../../components/Spinner/Spinner.jsx";
+import TeacherCardCollection from "../../components/TeacherCardCollection/TeacherCardCollection.jsx";
+import MainButton from "../../components/MainButton/MainButton.jsx";
 
 import css from "./TeachersPage.module.css";
 
@@ -18,8 +21,9 @@ export default function TeachersPage() {
   const pageSize = 4;
 
   useEffect(() => {
+    dispatch(clearAllShowDetails());
     teachers.length < pageSize && dispatch(fetchAllTeachers({ pageSize, key }));
-  }, [dispatch]);
+  }, [dispatch, teachers.length]);
 
   // Реалізація плавного скролу при додаванні нових вчителів
   const firstNewTeacherRef = useRef();
@@ -42,12 +46,12 @@ export default function TeachersPage() {
     });
   };
 
-  // const isVisible = teachers.length > 0 && teachers.length % pageSize === 0; // !!! КОСТЫЛЬ !!!!
-
   return (
     <section className={css.pageContainer}>
       {loading && <Spinner isLoading={loading} />}
-      {teachers.length > 0 && <TeacherCardCollection ref={firstNewTeacherRef} pageSize={pageSize} />}
+      {teachers.length > 0 && (
+        <TeacherCardCollection ref={firstNewTeacherRef} pageSize={pageSize} teachers={teachers} />
+      )}
       {isVisible && (
         <MainButton variant={"more"} handleClick={handleClickLoadMoreBtn}>
           Load more

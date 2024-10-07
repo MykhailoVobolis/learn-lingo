@@ -8,7 +8,7 @@ import { onShowDetails } from "../../redux/teachers/slise.js";
 
 import css from "./TeacherProfile.module.css";
 
-export default function TeacherProfile({ teacher }) {
+export default function TeacherProfile({ teacher, onToggleFavorite }) {
   const { name, surname, languages, lesson_info, conditions, levels, id } = teacher;
   const speaks = languages.join(", ");
   const conditionsValue = conditions.join(" ");
@@ -22,7 +22,7 @@ export default function TeacherProfile({ teacher }) {
 
   return (
     <div className={css.teacherProfileContainer}>
-      <TutorStats teacher={teacher} />
+      <TutorStats teacher={teacher} onToggleFavorite={onToggleFavorite} />
       <h2 className={css.teacherName}>
         {name} {surname}
       </h2>

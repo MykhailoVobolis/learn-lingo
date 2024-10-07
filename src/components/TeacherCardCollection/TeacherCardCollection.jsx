@@ -1,13 +1,17 @@
 import { forwardRef } from "react";
-import { useSelector } from "react-redux";
-import { selectTeachers } from "../../redux/teachers/selectors.js";
+import { useDispatch } from "react-redux";
 
 import TeacherCard from "../TeacherCard/TeacherCard.jsx";
+import { toggleFavoriteTeacher } from "../../redux/favorites/operations.js";
 
 import css from "./TeacherCardCollection.module.css";
 
-function TeacherCardCollection({ pageSize }, ref) {
-  const teachers = useSelector(selectTeachers);
+function TeacherCardCollection({ pageSize, teachers }, ref) {
+  const dispatch = useDispatch();
+
+  const handleToggleFavorite = (teacher) => {
+    dispatch(toggleFavoriteTeacher(teacher));
+  };
 
   const newTeacherIndex = teachers.length - pageSize;
   const isNewTeacher = (index) => index === newTeacherIndex;
@@ -18,7 +22,7 @@ function TeacherCardCollection({ pageSize }, ref) {
         <ul className={css.teacherList}>
           {teachers.map((teacher, index) => (
             <li key={teacher.id} ref={isNewTeacher(index) ? ref : null}>
-              <TeacherCard teacher={teacher} />
+              <TeacherCard teacher={teacher} onToggleFavorite={handleToggleFavorite} />
             </li>
           ))}
         </ul>

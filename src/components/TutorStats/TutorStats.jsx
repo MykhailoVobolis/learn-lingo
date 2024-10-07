@@ -4,8 +4,8 @@ import ButtonAddFavorite from "../ButtonAddFavorite/ButtonAddFavorite.jsx";
 
 import css from "./TutorStats.module.css";
 
-export default function TutorStats({ teacher }) {
-  const { lessons_done, rating, price_per_hour } = teacher;
+export default function TutorStats({ teacher, onToggleFavorite }) {
+  const { lessons_done, rating, price_per_hour, id } = teacher;
 
   return (
     <div className={css.tutorStatsContainer}>
@@ -23,7 +23,7 @@ export default function TutorStats({ teacher }) {
             Price / 1 hour: <span className={css.accent}>{price_per_hour}$</span>
           </li>
         </ul>
-        <ButtonAddFavorite />
+        <ButtonAddFavorite teacherId={id} onToggleFavorite={onToggleFavorite} teacher={teacher} />
       </div>
     </div>
   );
