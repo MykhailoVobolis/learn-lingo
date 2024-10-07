@@ -10,6 +10,7 @@ export default function AuthNav() {
   const handleClick = (modalType) => {
     dispatch(openModal(modalType));
   };
+
   return (
     <div className={css.btnContainer}>
       <button className={css.loginBtn} onClick={() => handleClick("login")}>

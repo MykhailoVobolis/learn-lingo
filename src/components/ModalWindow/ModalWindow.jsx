@@ -9,6 +9,7 @@ import RegistrationModal from "../RegistrationModal/RegistrationModal.jsx";
 import BookModal from "../BookModal/BookModal.jsx";
 
 import css from "./ModalWindow.module.css";
+import AuthMessage from "../AuthMessage/AuthMessage.jsx";
 
 Modal.setAppElement("#root");
 
@@ -41,6 +42,8 @@ function addContentModal(modalType) {
       return <RegistrationModal />;
     case "booking":
       return <BookModal />;
+    case "message":
+      return <AuthMessage />;
     default:
       return null;
   }
