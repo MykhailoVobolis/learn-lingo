@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy, useEffect } from "react";
+import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser, setAuthInitialized, setUser } from "../../redux/auth/slice.js";
 import { selectAuthInitialized, selectIsAuthenticating, selectIsLoggedIn } from "../../redux/auth/selectors.js";
@@ -57,6 +58,7 @@ export default function App() {
         <Route path="/favorites" element={<PrivateRoute component={<FavoritesPage />} redirectTo="/" />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <Toaster position="top-right" containerStyle={{ zIndex: 9999 }} />
     </Layout>
   );
 }

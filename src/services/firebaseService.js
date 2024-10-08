@@ -30,35 +30,13 @@ export async function saveUserData(userId, userData) {
 }
 
 // ----------------- Функція для збереження бази даних teachers !!! В ПРОДАКШЕНІ ВИДАЛИТИ !!! ------------------
-export async function writeTeachersDatabase(teachers) {
-  const teachersRef = ref(database, "teachers");
-
-  teachers.forEach((teacher) => {
-    const newTeacherRef = push(teachersRef); // Генерує унікальний ключ для кожного вчителя
-    set(newTeacherRef, teacher); // Записує дані вчителя за згенерованим ключем
-  });
-}
-
-// ----------------- Функція для отримання викладачів ------------------
-// export async function fetchTeachers() {
+// export async function writeTeachersDatabase(teachers) {
 //   const teachersRef = ref(database, "teachers");
-//   const snapshot = await get(teachersRef);
 
-//   // Перевіряємо, чи існують дані у базі даних.
-//   if (snapshot.exists()) {
-//     const teachersArray = [];
-
-//     snapshot.forEach((childSnapshot) => {
-//       const teacherId = childSnapshot.key; // Отримуємо унікальний ключ (teacherId)
-//       const teacherData = childSnapshot.val(); // Отримуємо дані про вчителя
-
-//       teachersArray.push({ ...teacherData, id: teacherId }); // Додаємо teacherId до об'єкта
-//     });
-
-//     return teachersArray; // Повертаємо масив із об'єктами вчителів, включаючи їх IDs
-//   }
-
-//   return [];
+//   teachers.forEach((teacher) => {
+//     const newTeacherRef = push(teachersRef); // Генерує унікальний ключ для кожного вчителя
+//     set(newTeacherRef, teacher); // Записує дані вчителя за згенерованим ключем
+//   });
 // }
 
 // ---------------- Функція для отримання викладачів з пагінацією ------------------
@@ -84,19 +62,20 @@ export async function fetchTeachers(pageSize, startKey = null) {
     const teachersNumber = Object.keys(snapshot.val()).length;
     const loadMore = teachersNumber > pageSize ? true : false;
 
+    // Рендер тільки pageSize кількості об'єктів з Realtime Database Firebase
+    // Отримуємо масив всіх об'єктів з snapshot
+    const teachersList = Object.entries(snapshot.val());
+
     // Змінна-акумулятор для рендеру тільки pageSize кількості об'єктів з БД
-    let i = 0;
-    snapshot.forEach((childSnapshot) => {
-      i++;
-      const teacherId = childSnapshot.key; // Отримуємо унікальний ключ (teacherId)
-      const teacherData = childSnapshot.val(); // Отримуємо дані про вчителя
+    for (let i = 0; i < pageSize && i < teachersList.length; i++) {
+      const [teacherId, teacherData] = teachersList[i]; // Деструктуризація ключа (teacherId) і даних (teacherData)
 
-      if (i <= pageSize) {
-        teachersArray.push({ ...teacherData, id: teacherId }); // Додаємо teacherId до об'єкта
-        lastKey = teacherId; // Оновлюємо lastKey
-      }
-    });
+      // Додаємо teacherId до об'єкта
+      teachersArray.push({ ...teacherData, id: teacherId });
 
+      // Оновлюємо lastKey
+      lastKey = teacherId;
+    }
     return { teachersArray, lastKey, loadMore };
   }
   return { teachersArray: [], lastKey: null, loadMore: false };
@@ -188,19 +167,20 @@ export async function fetchFavorites(pageSize, startKey = null) {
     const teachersNumber = Object.keys(snapshot.val()).length;
     const loadMore = teachersNumber > pageSize ? true : false;
 
+    // Рендер тільки pageSize кількості об'єктів з Realtime Database Firebase
+    // Отримуємо масив всіх об'єктів з snapshot
+    const teachersList = Object.entries(snapshot.val());
+
     // Змінна-акумулятор для рендеру тільки pageSize кількості об'єктів з БД
-    let i = 0;
-    snapshot.forEach((childSnapshot) => {
-      i++;
-      const teacherId = childSnapshot.key; // Отримуємо унікальний ключ (teacherId)
-      const teacherData = childSnapshot.val(); // Отримуємо дані про вчителя
+    for (let i = 0; i < pageSize && i < teachersList.length; i++) {
+      const [teacherId, teacherData] = teachersList[i]; // Деструктуризація ключа (teacherId) і даних (teacherData)
 
-      if (i <= pageSize) {
-        teachersArray.push({ ...teacherData, id: teacherId }); // Додаємо teacherId до об'єкта
-        lastKey = teacherId; // Оновлюємо lastKey
-      }
-    });
+      // Додаємо teacherId до об'єкта
+      teachersArray.push({ ...teacherData, id: teacherId });
 
+      // Оновлюємо lastKey
+      lastKey = teacherId;
+    }
     return { teachersArray, lastKey, loadMore };
   }
   return { teachersArray: [], lastKey: null, loadMore: false };

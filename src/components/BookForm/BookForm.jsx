@@ -1,9 +1,12 @@
 import { FormProvider, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
+
+import { useDispatch } from "react-redux";
 import { closeModal } from "../../redux/modal/slice.js";
 import { bookSchema } from "../../utils/validationSchemas.js";
 import { clearCurentTeacher } from "../../redux/teachers/slise.js";
+
 import FormButton from "../FormButton/FormButton.jsx";
 import InputField from "../InputField/InputField.jsx";
 
@@ -22,7 +25,12 @@ export default function BookForm() {
   });
 
   const onSubmit = (userData) => {
-    console.log(userData); // !!!! В ПРОДАКШЕН ЗМІНИТИ НА ТОСТ !!!
+    toast("You have successfully booked a trial lesson!!", {
+      style: {
+        color: "var(--main-black-color)",
+        backgroundColor: "var(--main-button-color)",
+      },
+    });
 
     methods.reset();
     dispatch(closeModal());
@@ -57,7 +65,13 @@ export default function BookForm() {
         <div className={css.imputContainer}>
           <InputField name="name" label="Name" placeholder="Full Name" />
           <InputField name="email" label="Email" type="email" placeholder="Email" />
-          <InputField name="number" label="Phone number" type="tel" placeholder="Phone number" />
+          <InputField
+            name="number"
+            label="Phone number"
+            type="tel"
+            placeholder="Phone number"
+            setValue={methods.setValue}
+          />
         </div>
         <FormButton>Book</FormButton>
       </form>

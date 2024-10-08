@@ -3,6 +3,7 @@ import { IoIosClose } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../redux/modal/slice.js";
 import { selectStateModal, selectTypeModal } from "../../redux/modal/selectors.js";
+import { clearCurentTeacher } from "../../redux/teachers/slise.js";
 
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import RegistrationModal from "../RegistrationModal/RegistrationModal.jsx";
@@ -56,6 +57,7 @@ export default function ModalWindow() {
 
   const onClose = () => {
     dispatch(closeModal());
+    dispatch(clearCurentTeacher());
   };
 
   return (
