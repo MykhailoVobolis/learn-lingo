@@ -1,0 +1,15 @@
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.imputContainer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 40px;
+}

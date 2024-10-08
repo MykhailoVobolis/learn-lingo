@@ -1,0 +1,49 @@
+.label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.labelText {
+  line-height: 1.38;
+}
+
+.hiddenRadioButton {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.customRadio {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  border: 2px solid var(--main-light-grey-color);
+  position: relative;
+  cursor: pointer;
+  transition: border-color var(--animation);
+}
+
+.hiddenRadioButton:checked + .customRadio {
+  border-color: var(--main-button-color);
+}
+
+.customRadio::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+  background-color: var(--main-button-color);
+  opacity: 0;
+  transition: opacity var(--animation);
+}
+
+.hiddenRadioButton:checked + .customRadio::after {
+  opacity: 1;
+}

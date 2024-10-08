@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { openModal } from "../../redux/modal/slice.js";
+import { setCurentTeacher } from "../../redux/teachers/slise.js";
 
 import LessonLevels from "../LessonLevels/LessonLevels.jsx";
 import MainButton from "../MainButton/MainButton.jsx";
@@ -14,6 +15,7 @@ export default function TutorOverview({ teacher }) {
 
   const handleClick = (modalType) => {
     dispatch(openModal(modalType));
+    dispatch(setCurentTeacher(teacher));
   };
 
   return (

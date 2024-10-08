@@ -24,6 +24,7 @@ const teachersSlice = createSlice({
   initialState: {
     teachers: [],
     showDetails: {},
+    curentTeacher: {},
     isFavorite: false,
     loading: false,
     error: null,
@@ -39,6 +40,12 @@ const teachersSlice = createSlice({
       Object.keys(state.showDetails).forEach((teacherId) => {
         state.showDetails[teacherId] = false;
       });
+    },
+    setCurentTeacher: (state, action) => {
+      state.curentTeacher = action.payload;
+    },
+    clearCurentTeacher: (state) => {
+      state.curentTeacher = {};
     },
   },
 
@@ -57,5 +64,5 @@ const teachersSlice = createSlice({
   },
 });
 
-export const { onShowDetails, clearAllShowDetails } = teachersSlice.actions;
+export const { onShowDetails, clearAllShowDetails, setCurentTeacher, clearCurentTeacher } = teachersSlice.actions;
 export const teachersReducer = teachersSlice.reducer;
