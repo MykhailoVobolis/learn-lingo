@@ -1,5 +1,6 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-hot-toast";
 import { singInSchema } from "../../utils/validationSchemas.js";
 
 import { closeModal } from "../../redux/modal/slice.js";
@@ -21,9 +22,15 @@ export default function SignInForm() {
   });
 
   const onSubmit = (userData) => {
-    dispatch(logIn(userData));
-    methods.reset();
-    dispatch(closeModal());
+    dispatch(logIn(userData))
+      .unwrap()
+      .then((response) => {
+        methods.reset();
+        dispatch(closeModal());
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   return (

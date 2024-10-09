@@ -58,7 +58,7 @@ export default function App() {
         <Route path="/favorites" element={<PrivateRoute component={<FavoritesPage />} redirectTo="/" />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Toaster position="top-right" containerStyle={{ zIndex: 9999 }} />
+      <Toaster position="top-right" containerStyle={{ zIndex: 999999 }} />
     </Layout>
   );
 }

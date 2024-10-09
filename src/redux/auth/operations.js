@@ -10,8 +10,9 @@ export const register = createAsyncThunk("auth/register", async (newUser, thunkA
   // Перевірка унікальності email
   const emailIsUnique = await isEmailUnique(email);
   if (!emailIsUnique) {
-    console.error("Цей email вже використовується."); // Змінити у продакшен на tost !!!
-    return thunkAPI.rejectWithValue("Email вже використовується.");
+    return thunkAPI.rejectWithValue(
+      "This email address is already registered. If you already have an account, please log in to your account."
+    );
   }
 
   try {
@@ -50,8 +51,9 @@ export const logIn = createAsyncThunk("auth/login", async (userInfo, thunkAPI) =
   // Перевірка наявності email користувача в базі даних
   const emailIsUnique = await isEmailUnique(email);
   if (emailIsUnique) {
-    console.error("Цей користувач не зареєстрований."); // Змінити у продакшен на tost !!!
-    return thunkAPI.rejectWithValue("Email користувача не знайдено.");
+    return thunkAPI.rejectWithValue(
+      "No user with this email address was found. Please check your details or register."
+    );
   }
 
   try {
@@ -68,8 +70,15 @@ export const logIn = createAsyncThunk("auth/login", async (userInfo, thunkAPI) =
 
     return userData;
   } catch (error) {
-    console.error("Помилка реєстрації:", error);
-    return thunkAPI.rejectWithValue(error.message);
+    if (error.code === "auth/invalid-credential") {
+      return thunkAPI.rejectWithValue("Invalid login or password. Please check your details and try again.");
+    } else if (error.code === "auth/too-many-requests") {
+      return thunkAPI.rejectWithValue(
+        "Access to this account has been temporarily disabled due to many failed login attempts. You can try again later."
+      );
+    } else {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 });
 

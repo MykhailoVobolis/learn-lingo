@@ -12,13 +12,6 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-// Функція фільтрації нових викладачів, щоб уникнути дублювання за ID
-const filterNewTeachers = (existingTeachers, newTeachersArray) => {
-  return newTeachersArray.filter(
-    (newTeacher) => !existingTeachers.some((existingTeacher) => existingTeacher.id === newTeacher.id)
-  );
-};
-
 const teachersSlice = createSlice({
   name: "teachers",
   initialState: {
@@ -55,8 +48,12 @@ const teachersSlice = createSlice({
       .addCase(fetchAllTeachers.fulfilled, (state, action) => {
         state.error = null;
         state.loading = false;
-        const newTeachers = filterNewTeachers(state.teachers, action.payload.teachersArray);
-        state.teachers = [...state.teachers, ...newTeachers];
+        // Додаємо тільки елементи, яких ще немає в state.teachers
+        state.teachers.push(
+          ...action.payload.teachersArray.filter(
+            (newTeacher) => !state.teachers.some((existingTeacher) => existingTeacher.id === newTeacher.id)
+          )
+        );
         state.lastKey = action.payload.lastKey;
         state.loadMore = action.payload.loadMore;
       })

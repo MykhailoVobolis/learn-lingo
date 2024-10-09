@@ -1,4 +1,4 @@
-import { get, limitToFirst, orderByKey, push, query, ref, set, startAfter, update } from "firebase/database";
+import { get, limitToFirst, orderByKey, query, ref, set, startAfter, update } from "firebase/database";
 import { auth, database } from "./firebase.js";
 
 // ----------------- Функция для перевірки унікальності email нового користувача -------------------

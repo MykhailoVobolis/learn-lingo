@@ -25,13 +25,7 @@ export default function BookForm() {
   });
 
   const onSubmit = (userData) => {
-    toast("You have successfully booked a trial lesson!!", {
-      style: {
-        color: "var(--main-black-color)",
-        backgroundColor: "var(--main-button-color)",
-      },
-    });
-
+    toast.success("You have successfully booked a trial lesson!!");
     methods.reset();
     dispatch(closeModal());
     dispatch(clearCurentTeacher());
