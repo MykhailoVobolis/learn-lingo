@@ -1,31 +1,25 @@
 .btnContainer {
-  width: 255px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 50px;
 }
 
 .loginBtn {
   display: flex;
   align-items: center;
-  gap: 8px;
   background-color: transparent;
   border: none;
-  border-radius: 12px;
   font-family: inherit;
   font-weight: 700;
   line-height: 1.25;
-  width: 73px;
-  height: 48px;
   transition: color var(--animation);
 }
 
 .loginBtn:hover {
   color: var(--main-button-color);
-}
-
-.loginIcon {
-  stroke: var(--main-button-color);
 }
 
 .registerBtn {
@@ -44,4 +38,28 @@
 
 .registerBtn:hover {
   background-color: var(--main-black-button-hover-color);
+}
+
+@media screen and (min-width: 768px) {
+  .btnContainer {
+    width: 255px;
+    flex-direction: row;
+    gap: 16px;
+    margin-top: 0;
+  }
+
+  .loginBtn {
+    gap: 8px;
+    border-radius: 12px;
+    width: 73px;
+    height: 48px;
+  }
+
+  .loginIcon {
+    stroke: var(--main-button-color);
+  }
+
+  .registerBtn:hover {
+    background-color: var(--main-black-button-hover-color);
+  }
 }

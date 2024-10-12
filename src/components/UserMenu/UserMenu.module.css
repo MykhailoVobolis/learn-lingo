@@ -1,29 +1,42 @@
 .userMenuContainer {
-  width: 255px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
 }
 
 .logoutBtn {
   display: flex;
   align-items: center;
-  gap: 8px;
   background-color: transparent;
   border: none;
-  border-radius: 12px;
   font-family: inherit;
   font-weight: 700;
   line-height: 1.25;
-  width: 83px;
-  height: 48px;
   transition: color var(--animation);
+  margin-top: 50px;
 }
 
 .logoutBtn:hover {
   color: var(--main-button-color);
 }
 
-.logoutIcon {
-  stroke: var(--main-button-color);
+@media screen and (min-width: 768px) {
+  .userMenuContainer {
+    width: 255px;
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .logoutBtn {
+    gap: 8px;
+    border-radius: 12px;
+    width: 83px;
+    height: 48px;
+    margin-top: 0;
+  }
+
+  .logoutIcon {
+    stroke: var(--main-button-color);
+  }
 }
