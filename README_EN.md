@@ -2,6 +2,10 @@
 
 [Live Site](https://top-learn-lingo.vercel.app/)
 
+[Technical task](https://docs.google.com/document/d/1ZB_MFgnnJj7t7OXtv5hESSwY6xRgVoACZKzgZczWc3Y/edit)
+
+[Layout](https://www.figma.com/file/dewf5jVviSTuWMMyU3d8Mc/%D0%9F%D0%B5%D1%82-%D0%BF%D1%80%D0%BE%D1%94%D0%BA%D1%82-%D0%B4%D0%BB%D1%8F-%D0%9A%D0%A6?type=design&node-id=0-1&mode=design&t=jCmjSs9PeOjObYSc-0)
+
 ## Overview
 
 LearnLingo is an educational platform designed to help users find and book language tutors from around the world. With a diverse range of experienced tutors, subjects, and nationalities, Learn Lingo makes language learning accessible and personalized.
@@ -38,7 +42,7 @@ LearnLingo is an educational platform designed to help users find and book langu
 
 - **Search for Tutors:** Users can browse through a wide range of language tutors.
 - **Tutor Reviews:** Access thousands of reviews from other students to help in decision-making.
-- **Responsive Design:** The application is optimized for mobile, tablet, and desktop devices.
+- **Responsive Design:** The application is optimized for mobile, tablet, and desktop devices. Markup from 320px to 1440px.
 - **Favorites:** Users can add their preferred tutors to a favorites list.
 - **Booking System:** Book a session with a tutor directly from the app.
 
@@ -49,7 +53,6 @@ LearnLingo is an educational platform designed to help users find and book langu
   - React
   - Redux Toolkit for state management
   - React Router for navigation
-  - Axios for API requests
   - Vite for fast development and build
   - Material UI for styling
 
