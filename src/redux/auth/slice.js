@@ -26,6 +26,7 @@ const authSlice = createSlice({
     error: null,
     isAuthenticating: false,
     authInitialized: false,
+    uploadedImage: true,
   },
   reducers: {
     setUser(state, action) {
@@ -42,6 +43,9 @@ const authSlice = createSlice({
     },
     setAuthInitialized(state, action) {
       state.authInitialized = action.payload;
+    },
+    uploadImage(state) {
+      state.uploadedImage = false;
     },
   },
   extraReducers: (builder) => {
@@ -83,5 +87,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUser, clearUser, setAuthInitialized } = authSlice.actions;
+export const { setUser, clearUser, setAuthInitialized, uploadImage } = authSlice.actions;
 export const authReducer = authSlice.reducer;

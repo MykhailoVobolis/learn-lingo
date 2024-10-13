@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { TutorFeaturesBar } from "../../components/TutorFeaturesBar/TutorFeaturesBar.jsx";
-import { selectLoading } from "../../redux/auth/selectors.js";
+import { selectLoading, selectUploadedImage } from "../../redux/auth/selectors.js";
 
 import AboutApp from "../../components/AboutApp/AboutApp.jsx";
 import HeroImage from "../../components/HeroImage/HeroImage.jsx";
@@ -9,7 +9,10 @@ import Spinner from "../../components/Spinner/Spinner.jsx";
 import css from "./HomePage.module.css";
 
 export default function HomePage() {
-  const loading = useSelector(selectLoading);
+  const isloading = useSelector(selectLoading);
+  const uploadImage = useSelector(selectUploadedImage);
+
+  const loading = isloading || uploadImage;
 
   return (
     <section className={css.hero}>
