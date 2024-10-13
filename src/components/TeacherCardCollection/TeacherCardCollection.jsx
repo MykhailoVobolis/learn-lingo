@@ -26,15 +26,13 @@ function TeacherCardCollection({ pageSize, teachers }, ref) {
 
   return (
     teachers.length > 0 && (
-      <div className={css.teacherCardCollectionWrapper}>
-        <ul className={css.teacherList}>
-          {teachers.map((teacher, index) => (
-            <li key={teacher.id} ref={isNewTeacher(index) ? ref : null}>
-              <TeacherCard teacher={teacher} onToggleFavorite={handleToggleFavorite} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul className={css.teacherList}>
+        {teachers.map((teacher, index) => (
+          <li key={teacher.id} ref={isNewTeacher(index) ? ref : null}>
+            <TeacherCard teacher={teacher} onToggleFavorite={handleToggleFavorite} />
+          </li>
+        ))}
+      </ul>
     )
   );
 }

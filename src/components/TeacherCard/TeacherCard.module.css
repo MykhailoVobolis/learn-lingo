@@ -1,8 +1,16 @@
 .teacherCardContainer {
   display: flex;
-  gap: 48px;
+  flex-direction: column;
+  gap: 24px;
   border-radius: 24px;
   padding: 24px;
-  max-width: 100%;
+  max-width: 1184px;
   background-color: var(--main-white-color);
+}
+
+@media screen and (min-width: 1024px) {
+  .teacherCardContainer {
+    flex-direction: row;
+    gap: 48px;
+  }
 }

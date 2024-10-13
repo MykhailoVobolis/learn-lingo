@@ -2,12 +2,6 @@
   margin-bottom: 32px;
 }
 
-.avatar {
-  border-radius: 100px;
-  background-color: var(--main-grey-color);
-  object-fit: cover;
-}
-
 .name {
   font-weight: 500;
   font-size: 16px;
@@ -21,6 +15,20 @@
   gap: 12px;
   align-items: center;
   margin-bottom: 16px;
+}
+
+.firstLeterName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.25;
+  width: 44px;
+  height: 44px;
+  border-radius: 100px;
+  color: var(--main-spinner-color);
+  background-color: var(--main-grey-color);
 }
 
 .ratingContainer {

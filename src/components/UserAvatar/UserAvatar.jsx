@@ -31,7 +31,7 @@ export default function UserAvatar() {
           ],
         },
       }}
-      placement="right"
+      placement="bottom"
       title={
         <Fragment>
           <Typography color="#f0f4f9" fontSize={"12px"} fontWeight={"700"}>
@@ -45,8 +45,8 @@ export default function UserAvatar() {
         aria-label="user"
         sx={{
           bgcolor: "var(--main-black-color)",
-          width: 40,
-          height: 40,
+          width: { xs: 36, sm: 38, md: 40 },
+          height: { xs: 36, sm: 38, md: 40 },
           cursor: "pointer",
         }}>
         {name[0].toUpperCase()}

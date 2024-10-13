@@ -1,8 +1,8 @@
 .tutorStatsContainer {
   display: flex;
-  align-items: center;
-  gap: 190px;
-  margin-bottom: 6px;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
 }
 
 .description {
@@ -13,12 +13,12 @@
 .tutorBar {
   display: flex;
   align-items: center;
-  gap: 64px;
 }
 
 .tutorStatsList {
   display: flex;
-  gap: 32px;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .tutorStatsList li {
@@ -40,16 +40,47 @@
   color: var(--main-marker-color);
 }
 
-.afterElement {
-  position: relative;
+@media screen and (min-width: 690px) {
+  .tutorStatsList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  .tutorBar {
+    max-width: 100%;
+    justify-content: space-between;
+  }
+
+  .afterElement {
+    position: relative;
+  }
+
+  .afterElement::after {
+    content: "";
+    position: absolute;
+    right: -16px;
+    bottom: 1;
+    width: 1px;
+    height: 16px;
+    background-color: var(--main-light-grey-color);
+  }
 }
 
-.afterElement::after {
-  content: "";
-  position: absolute;
-  right: -16px;
-  bottom: 1;
-  width: 1px;
-  height: 16px;
-  background-color: var(--main-light-grey-color);
+@media screen and (min-width: 1440px) {
+  .tutorStatsContainer {
+    flex-direction: row;
+    align-items: center;
+    gap: 190px;
+    margin-bottom: 6px;
+  }
+
+  .description {
+    font-weight: 500;
+    color: var(--main-semiblack-color);
+  }
+
+  .tutorBar {
+    gap: 64px;
+  }
 }
