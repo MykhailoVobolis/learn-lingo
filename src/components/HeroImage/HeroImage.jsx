@@ -8,7 +8,7 @@ export default function HeroImage() {
     <picture>
       <source srcSet={heroImg2x} type="image/webp" media="(min-resolution: 2dppx)" />
 
-      <img className={css.heroImage} src={heroImg} alt="Hero Image" width="568" height="530" loading="lazy" />
+      <img className={css.heroImage} src={heroImg} alt="Hero Image" width="568" height="530" />
     </picture>
   );
 }
