@@ -19,6 +19,7 @@ LearnLingo is an educational platform designed to help users find and book langu
 **User registration and authorization:**
 
 ![Sign Up](./src/assets/images/sign-up.png)
+
 ![Sign In](./src/assets/images/sign-in.png)
 
 **Favorite teachers page. Available to authorized users:**
@@ -47,11 +48,10 @@ LearnLingo is an educational platform designed to help users find and book langu
 
   - React
   - Redux Toolkit for state management
-  - Firebase Realtime Database for data storage
+  - React Router for navigation
   - Axios for API requests
   - Vite for fast development and build
   - Material UI for styling
-  - React Router for navigation
 
 - **Backend:**
   - Firebase Authentication for user authentication

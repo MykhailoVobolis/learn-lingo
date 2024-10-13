@@ -1,13 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 
-import { selectLastKey, selectLoading, selectLoadMore, selectTeachers } from "../../redux/teachers/selectors.js";
+import {
+  selectError,
+  selectLastKey,
+  selectLoading,
+  selectLoadMore,
+  selectTeachers,
+} from "../../redux/teachers/selectors.js";
 import { fetchAllTeachers } from "../../redux/teachers/operations.js";
 import { clearAllShowDetails } from "../../redux/teachers/slise.js";
 
 import Spinner from "../../components/Spinner/Spinner.jsx";
 import TeacherCardCollection from "../../components/TeacherCardCollection/TeacherCardCollection.jsx";
 import MainButton from "../../components/MainButton/MainButton.jsx";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.jsx";
 
 import css from "./TeachersPage.module.css";
 
@@ -19,6 +26,7 @@ export default function TeachersPage() {
   const isVisible = useSelector(selectLoadMore);
   const key = null;
   const pageSize = 4;
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(clearAllShowDetails());
@@ -57,6 +65,7 @@ export default function TeachersPage() {
           Load more
         </MainButton>
       )}
+      {error && <ErrorMessage />}
     </section>
   );
 }

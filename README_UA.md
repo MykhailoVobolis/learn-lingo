@@ -19,6 +19,7 @@ LearnLingo — це освітня платформа, яка допомагає
 **Реєстрація та авторизація користувачів:**
 
 ![Sign Up](./src/assets/images/sign-up.png)
+
 ![Sign In](./src/assets/images/sign-in.png)
 
 **Сторінка обраних викладачів. Доступна авторизованим користувачам:**
@@ -47,11 +48,10 @@ LearnLingo — це освітня платформа, яка допомагає
 
   - React
   - Redux Toolkit для управління станом
-  - Firebase Realtime Database для зберігання даних
+  - React Router для навігації
   - Axios для API запитів
   - Vite для швидкої розробки та збірки
   - Material UI для стилізації
-  - React Router для навігації
 
 - **Бекенд:**
   - Firebase Authentication для автентифікації користувачів

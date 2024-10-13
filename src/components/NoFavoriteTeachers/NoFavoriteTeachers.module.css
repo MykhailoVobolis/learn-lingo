@@ -1,0 +1,36 @@
+.notFavoriteContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.subIcon {
+  width: 72px;
+  height: 72px;
+  fill: var(--main-semiblack-color);
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.text {
+  color: var(--main-semiblack-color);
+  text-align: center;
+}
+
+@media screen and (min-width: 1024px) {
+  .notFavoriteContainer {
+    height: 55vh;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .notFavoriteContainer {
+    height: 65vh;
+  }
+}

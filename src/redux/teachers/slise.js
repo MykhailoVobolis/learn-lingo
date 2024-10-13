@@ -18,7 +18,6 @@ const teachersSlice = createSlice({
     teachers: [],
     showDetails: {},
     curentTeacher: {},
-    isFavorite: false,
     loading: false,
     error: null,
     lastKey: null,
