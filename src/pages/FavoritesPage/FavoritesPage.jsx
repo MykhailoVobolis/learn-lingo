@@ -34,7 +34,6 @@ export default function FavoritesPage() {
     teachersIsFavorite.length < pageSize && dispatch(fetchAllFavoritesTeacher({ pageSize, key }));
   }, [dispatch, teachersIsFavorite.length]);
 
-  // Реалізація плавного скролу при додаванні нових вчителів
   const firstNewTeacherRef = useRef();
 
   const smoothCollectionScroll = () => {
@@ -51,7 +50,7 @@ export default function FavoritesPage() {
 
   const handleClickLoadMoreBtn = () => {
     dispatch(fetchAllFavoritesTeacher({ pageSize, lastKey })).then(() => {
-      smoothCollectionScroll(); // Викликаємо скрол після завантаження нових даних
+      smoothCollectionScroll();
     });
   };
 

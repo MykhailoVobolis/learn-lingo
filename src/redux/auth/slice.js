@@ -50,7 +50,7 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Обробка операції регістрації користувача
+
       .addCase(register.pending, handlePending)
       .addCase(register.fulfilled, (state, action) => {
         state.loading = false;
@@ -61,7 +61,6 @@ const authSlice = createSlice({
       })
       .addCase(register.rejected, handleRejected)
 
-      // Обробка операції логіну користувача
       .addCase(logIn.pending, handlePending)
       .addCase(logIn.fulfilled, (state, action) => {
         state.loading = false;
@@ -71,7 +70,6 @@ const authSlice = createSlice({
       })
       .addCase(logIn.rejected, handleRejected)
 
-      // Обробка операції виходу користувача
       .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, (state) => {
         state.loading = false;

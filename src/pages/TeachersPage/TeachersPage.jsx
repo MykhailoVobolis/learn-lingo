@@ -33,7 +33,6 @@ export default function TeachersPage() {
     teachers.length < pageSize && dispatch(fetchAllTeachers({ pageSize, key }));
   }, [dispatch, teachers.length]);
 
-  // Реалізація плавного скролу при додаванні нових вчителів
   const firstNewTeacherRef = useRef();
 
   const smoothCollectionScroll = () => {
@@ -50,7 +49,7 @@ export default function TeachersPage() {
 
   const handleClickLoadMoreBtn = () => {
     dispatch(fetchAllTeachers({ pageSize, lastKey })).then(() => {
-      smoothCollectionScroll(); // Викликаємо скрол після завантаження нових даних
+      smoothCollectionScroll();
     });
   };
 

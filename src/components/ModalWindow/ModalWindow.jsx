@@ -9,7 +9,6 @@ import LoginModal from "../LoginModal/LoginModal.jsx";
 import RegistrationModal from "../RegistrationModal/RegistrationModal.jsx";
 import BookModal from "../BookModal/BookModal.jsx";
 import AuthMessage from "../AuthMessage/AuthMessage.jsx";
-import MobileMenu from "../MobileMenu/MobileMenu.jsx";
 
 import css from "./ModalWindow.module.css";
 
@@ -27,7 +26,6 @@ const modalStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    // padding: 64,
     padding: window.innerWidth < 768 ? "28px" : "64px",
     border: "none",
     borderRadius: "30px",
