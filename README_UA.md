@@ -1,10 +1,6 @@
 # LearnLingo
 
-[Жива сторінка](https://top-learn-lingo.vercel.app/)
-
-[Технічне завдання](https://docs.google.com/document/d/1ZB_MFgnnJj7t7OXtv5hESSwY6xRgVoACZKzgZczWc3Y/edit)
-
-[Макет](https://www.figma.com/file/dewf5jVviSTuWMMyU3d8Mc/%D0%9F%D0%B5%D1%82-%D0%BF%D1%80%D0%BE%D1%94%D0%BA%D1%82-%D0%B4%D0%BB%D1%8F-%D0%9A%D0%A6?type=design&node-id=0-1&mode=design&t=jCmjSs9PeOjObYSc-0)
+[Жива сторінка](https://top-learn-lingo.vercel.app/) — ознайомтеся з працюючою версією проєкту.
 
 ## Огляд
 
@@ -102,3 +98,11 @@ LearnLingo — це освітня платформа, яка допомагає
    ```
 
 6. Відкрийте [http://localhost:5173](http://localhost:5173), щоб переглянути в браузері.
+
+## Матеріали
+
+[Жива сторінка](https://top-learn-lingo.vercel.app/) — ознайомтеся з працюючою версією проєкту.
+
+[Технічне завдання](https://docs.google.com/document/d/1ZB_MFgnnJj7t7OXtv5hESSwY6xRgVoACZKzgZczWc3Y/edit) — деталі проєкту, які було використано для розробки.
+
+[Макет Figma](https://www.figma.com/file/dewf5jVviSTuWMMyU3d8Mc/%D0%9F%D0%B5%D1%82-%D0%BF%D1%80%D0%BE%D1%94%D0%BA%D1%82-%D0%B4%D0%BB%D1%8F-%D0%9A%D0%A6?type=design&node-id=0-1&mode=design&t=jCmjSs9PeOjObYSc-0) — дизайн інтерфейсу, який використовувався для створення проекту.
