@@ -1,11 +1,14 @@
 import { PiBookOpenBold } from "react-icons/pi";
 import { GoStarFill } from "react-icons/go";
+import { useMedia } from "react-use";
 import ButtonAddFavorite from "../ButtonAddFavorite/ButtonAddFavorite.jsx";
 
 import css from "./TutorStats.module.css";
 
 export default function TutorStats({ teacher, onToggleFavorite }) {
   const { lessons_done, rating, price_per_hour, id } = teacher;
+
+  const isDesktop = useMedia("(min-width: 1024px)");
 
   return (
     <div className={css.tutorStatsContainer}>
@@ -23,7 +26,7 @@ export default function TutorStats({ teacher, onToggleFavorite }) {
             Price / 1 hour: <span className={css.accent}>{price_per_hour}$</span>
           </li>
         </ul>
-        <ButtonAddFavorite teacherId={id} onToggleFavorite={onToggleFavorite} teacher={teacher} />
+        {isDesktop && <ButtonAddFavorite teacherId={id} onToggleFavorite={onToggleFavorite} teacher={teacher} />}
       </div>
     </div>
   );

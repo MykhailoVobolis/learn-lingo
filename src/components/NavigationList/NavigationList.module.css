@@ -1,0 +1,29 @@
+.navMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+}
+
+.link {
+  line-height: 1.25;
+  text-decoration: none;
+  color: var(--main-black-color);
+  transition: color var(--animation);
+}
+
+.link:hover {
+  color: var(--main-button-color);
+}
+
+.active {
+  color: var(--main-button-color);
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .navMenu {
+    flex-direction: row;
+    gap: 28px;
+  }
+}

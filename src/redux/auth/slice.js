@@ -26,6 +26,7 @@ const authSlice = createSlice({
     error: null,
     isAuthenticating: false,
     authInitialized: false,
+    uploadedImage: true,
   },
   reducers: {
     setUser(state, action) {
@@ -43,10 +44,13 @@ const authSlice = createSlice({
     setAuthInitialized(state, action) {
       state.authInitialized = action.payload;
     },
+    uploadImage(state) {
+      state.uploadedImage = false;
+    },
   },
   extraReducers: (builder) => {
     builder
-      // Обробка операції регістрації користувача
+
       .addCase(register.pending, handlePending)
       .addCase(register.fulfilled, (state, action) => {
         state.loading = false;
@@ -57,7 +61,6 @@ const authSlice = createSlice({
       })
       .addCase(register.rejected, handleRejected)
 
-      // Обробка операції логіну користувача
       .addCase(logIn.pending, handlePending)
       .addCase(logIn.fulfilled, (state, action) => {
         state.loading = false;
@@ -67,7 +70,6 @@ const authSlice = createSlice({
       })
       .addCase(logIn.rejected, handleRejected)
 
-      // Обробка операції виходу користувача
       .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, (state) => {
         state.loading = false;
@@ -83,5 +85,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUser, clearUser, setAuthInitialized } = authSlice.actions;
+export const { setUser, clearUser, setAuthInitialized, uploadImage } = authSlice.actions;
 export const authReducer = authSlice.reducer;

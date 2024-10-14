@@ -15,3 +15,5 @@ export const selectLoading = (state) => state.teachers.loading;
 export const selectLoadMore = (state) => state.teachers.loadMore;
 
 export const selectCurentTeacher = (state) => state.teachers.curentTeacher;
+
+export const selectError = (state) => state.teachers.error;

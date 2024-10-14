@@ -18,9 +18,15 @@
 }
 
 .mainBtn.booking {
-  margin-top: 32px;
+  margin: 32px auto 0px auto;
 }
 
 .mainBtn.more {
   margin: 64px auto 0px auto;
+}
+
+@media screen and (min-width: 600px) {
+  .mainBtn.booking {
+    margin: 32px 0px 0px 0px;
+  }
 }

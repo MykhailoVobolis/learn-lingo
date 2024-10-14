@@ -29,16 +29,6 @@ export async function saveUserData(userId, userData) {
   await set(userRef, userData);
 }
 
-// ----------------- Функція для збереження бази даних teachers !!! В ПРОДАКШЕНІ ВИДАЛИТИ !!! ------------------
-// export async function writeTeachersDatabase(teachers) {
-//   const teachersRef = ref(database, "teachers");
-
-//   teachers.forEach((teacher) => {
-//     const newTeacherRef = push(teachersRef); // Генерує унікальний ключ для кожного вчителя
-//     set(newTeacherRef, teacher); // Записує дані вчителя за згенерованим ключем
-//   });
-// }
-
 // ---------------- Функція для отримання викладачів з пагінацією ------------------
 export async function fetchTeachers(pageSize, startKey = null) {
   const teachersRef = ref(database, "teachers");

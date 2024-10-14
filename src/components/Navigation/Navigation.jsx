@@ -1,42 +1,30 @@
-import clsx from "clsx";
-import { NavLink, Link } from "react-router-dom";
+import { useMedia } from "react-use";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
 
-import css from "./Navigation.module.css";
+import BurgerButton from "../BurgerButton/BurgerButton.jsx";
+import NavigationList from "../NavigationList/NavigationList.jsx";
+import UserAvatar from "../UserAvatar/UserAvatar.jsx";
 
-const getNavLinkClass = ({ isActive }) => {
-  return clsx(css.link, isActive && css.active);
-};
+import css from "./Navigation.module.css";
 
 export default function Navigation() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isMobile = useMedia("(max-width: 767px)");
+  const isTablet = useMedia("(min-width: 768px)");
 
   return (
-    <nav className={css.navigation}>
-      <Link className={css.mainLogo} to="/">
-        <img className={css.logo} width={28} height={28} src="/logo-ukraine.svg" alt="logo" />
-        LearnLingo
-      </Link>
-      <ul className={css.navMenu}>
-        <li>
-          <NavLink to="/" className={getNavLinkClass}>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/teachers" className={getNavLinkClass}>
-            Teachers
-          </NavLink>
-        </li>
-        {isLoggedIn && (
-          <li>
-            <NavLink to="/favorites" className={getNavLinkClass}>
-              Favorites
-            </NavLink>
-          </li>
-        )}
-      </ul>
-    </nav>
+    <div className={css.barContainer}>
+      <nav className={css.navigation}>
+        <Link className={css.mainLogo} to="/">
+          <img className={css.logo} width={28} height={28} src="/logo-ukraine.svg" alt="logo" />
+          LearnLingo
+        </Link>
+        {isTablet && <NavigationList />}
+      </nav>
+      {isMobile && isLoggedIn && <UserAvatar />}
+      {isMobile && <BurgerButton />}
+    </div>
   );
 }

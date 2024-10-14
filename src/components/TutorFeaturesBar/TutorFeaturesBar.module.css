@@ -1,13 +1,21 @@
-.TutorFeaturesContainer {
+.wrapper {
   position: relative;
   width: 100%;
-  height: 116px;
+  height: 100%;
   border-radius: 30px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 100px;
+}
+
+.TutorFeaturesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 30px 16px;
 }
 
 .borderSvg {
@@ -47,4 +55,28 @@
   letter-spacing: -0.02em;
   color: var(--main-dark-grey-color);
   max-width: 74px;
+}
+
+@media screen and (min-width: 507px) {
+  .TutorFeaturesContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 475px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .TutorFeaturesContainer {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    height: 116px;
+  }
+
+  .TutorFeaturesContainer {
+    gap: 100px;
+  }
 }

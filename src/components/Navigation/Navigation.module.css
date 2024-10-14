@@ -1,29 +1,16 @@
-.navMenu {
+.barContainer {
+  width: 100%;
   display: flex;
-  gap: 28px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .navigation {
   display: flex;
-  gap: 390px;
+  width: 100%;
+  max-width: 661px;
   align-items: center;
-}
-
-.link {
-  line-height: 1.25;
-  text-decoration: none;
-  color: var(--main-black-color);
-  transition: color var(--animation);
-}
-
-.link:hover {
-  color: var(--main-button-color);
-}
-
-.active {
-  color: var(--main-button-color);
-  position: relative;
+  justify-content: space-between;
 }
 
 .mainLogo {
@@ -37,4 +24,10 @@
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--main-black-color);
+}
+
+@media screen and (min-width: 768px) {
+  .navigation {
+    margin-right: 90px;
+  }
 }

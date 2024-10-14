@@ -1,7 +1,3 @@
-.teacherCardCollectionWrapper {
-  /* max-width: 1184px; */
-}
-
 .teacherList {
   display: flex;
   flex-direction: column;
