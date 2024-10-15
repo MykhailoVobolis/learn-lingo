@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { setFilter } from "../../redux/teachers/slise.js";
+// import { setFilter } from "../../redux/teachers/slise.js";
 
 import css from "./SelectTeachersBar.module.css";
 
@@ -15,7 +15,9 @@ export default function SelectTeachersBar() {
   } = useForm();
 
   const onSubmit = (data) => {
-    dispatch(setFilter(data));
+    console.log(data);
+
+    // dispatch(setFilter(data));
   };
 
   const handleChange = (name) => (event) => {

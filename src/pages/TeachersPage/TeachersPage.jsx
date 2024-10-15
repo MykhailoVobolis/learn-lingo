@@ -15,6 +15,7 @@ import Spinner from "../../components/Spinner/Spinner.jsx";
 import TeacherCardCollection from "../../components/TeacherCardCollection/TeacherCardCollection.jsx";
 import MainButton from "../../components/MainButton/MainButton.jsx";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.jsx";
+import SelectTeachersBar from "../../components/SelectTeachersBar/SelectTeachersBar.jsx";
 
 import css from "./TeachersPage.module.css";
 
@@ -56,6 +57,7 @@ export default function TeachersPage() {
   return (
     <section className={css.pageContainer}>
       {loading && <Spinner isLoading={loading} />}
+      <SelectTeachersBar />
       {teachers.length > 0 && (
         <TeacherCardCollection ref={firstNewTeacherRef} pageSize={pageSize} teachers={teachers} />
       )}
